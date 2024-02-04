@@ -1,0 +1,473 @@
+dotnet 
+
+
+
+pg 1
+Program to determine the quadrant of the Cartesian plane using if else ladder
+
+using System;
+
+namespace lab11
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int x = 10;
+            int y=-6;
+
+            if (x > 0 && y > 0)
+                Console.WriteLine("1st quadrent");
+            else if (x < 0 && y > 0)
+                Console.WriteLine("2nd quadrent");
+            else if (x < 0 && y < 0)
+                Console.WriteLine("3rd quadrent");
+            else if (x > 0 && y < 0)
+                Console.WriteLine("4th quadrent");
+            else if (x == 0 && y > 0)
+                Console.WriteLine("+ve y axis");
+            else if (x == 0 && y < 0)
+                Console.WriteLine("-ve y axis");
+            else if (x > 0 && y == 0)
+                Console.WriteLine("+ve x axis");
+            else if (x < 0 && y == 0)
+                Console.WriteLine("-ve x axis");
+            else
+                Console.WriteLine("lies at origin");
+
+           Console.ReadLine();
+        }
+    }
+}
+
+
+
+
+pg 2
+Program to Check whether the alphabet is a Vowel or not using Switch 
+Case in C#
+
+
+using System;
+ 
+
+namespace lab2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            char ch='a';
+            
+
+            switch(ch)
+            {
+                case 'a':
+                case 'A':
+                case 'e':
+                case 'E':
+                case 'i':
+                case 'I':
+                case 'o':
+                case 'O':
+                case 'u':
+                case 'U':
+
+                    Console.WriteLine("{0} is a vowel" , ch);
+                    break;
+
+                    default: Console.WriteLine("{0} is not a vowel" , ch);
+                    break;
+
+                    
+            }
+            Console.ReadLine();
+
+
+        }
+    }
+}
+
+
+pg 3
+To develop a c# application to print the students list using classes and 
+objects
+
+
+using System;
+
+
+    public class tejas
+    {
+        public int id;
+        public string name;
+
+        public void inset( int i, string n) {
+            id = i;
+            name=n;
+        }
+        public void disply() {
+            Console.WriteLine("id is " + id + " " + "name is " + name);
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            tejas t1 = new tejas();
+            tejas t2 = new tejas();
+            t1.inset(101, "teju");
+            t2.inset(102, "tejas");
+            t1.disply();
+            t2.disply();
+
+            Console.ReadLine();
+
+
+        }
+    }
+
+
+
+pg 4
+To Develop a console application to implement binary operator 
+overloading concept in C
+
+using System;
+using System.Security.Cryptography;
+class complex
+{
+    double real, image;
+    public complex()
+    {
+
+    }
+    public complex(double a, double b)
+    {
+        real = a;
+        image = b;
+    }
+    public void display()
+    {
+        Console.WriteLine("{0} + i {1}", real, image);
+
+    }
+    public static complex operator +(complex c1,complex c2)
+    {
+        complex c3 = new complex();
+        c3.real = c1.real + c2.real;
+        c3.image = c1.image + c2.image;
+        return c3;
+
+    }
+
+
+}
+class Demo
+{
+    public static void Main(string[] args)
+    {
+        complex c1= new complex(5,6);
+        c1.display();
+        complex c2= new complex(7,8);
+        c2.display();
+
+        complex c3= new complex();
+        c3 = c1 + c2;
+        c3.display();
+
+        Console.ReadLine();
+
+    }
+}
+
+
+pg 5
+Program to Demonstrate multithreaded programming in c#.net
+
+using System;
+using System.Threading;
+
+namespace lab5
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Thread obj1 = new Thread(Example1);
+            Thread obj2 = new Thread(Example2);
+
+            obj1.Start();
+            obj2.Start();
+        }
+        static void Example1()
+        {
+            Console.WriteLine("thread 1 is starting");
+
+            for(int i = 0; i < 5; i++)
+            {
+                Console.WriteLine("thread 1 is exucuting");
+                Thread.Sleep(1000);
+            }
+        }
+        static void Example2()
+        {
+            Console.WriteLine("thread 2 is starting");
+
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine("thread 2 is exucuting");
+                Thread.Sleep(1000);
+            }
+            Console.ReadLine();
+        }
+    }
+}
+
+
+
+pg 6
+Using Try, Catch and Finally blocks write a C# program to 
+demonstrate error handling
+
+using System;
+  class Program
+    {
+     static void Main(string[] args)
+        {
+
+        Console.WriteLine("enter 1st number");
+        int num1=int.Parse(Console.ReadLine());
+
+        Console.WriteLine("enter 1st number");
+        int num2 = int.Parse(Console.ReadLine());
+
+        try
+        {
+            int result = num1 / num2;
+            Console.WriteLine("division is " + result);
+
+        }
+         catch( Exception e) { 
+            Console.WriteLine(" an exception occur" +e.Message);
+        }
+        finally
+        {
+            Console.WriteLine("\n this is finally block");
+
+        }
+        Console.ReadLine(); 
+
+    }
+}
+
+
+
+
+
+pg 7
+To develop a c# console application to implement delegates concept
+
+
+using System;
+class DelegateDemo
+{
+    //defining delegate
+    public delegate void AddDelegate(int x, int y);
+    public delegate string SayDelegate(string Name);
+    class Demo
+    {
+        public void AddNum(int a, int b)
+        {
+            Console.WriteLine(a + b);
+        }
+        public static string SayHello(string Name)
+        {
+            return  "hello " + Name ;
+        }
+        static void Main(string[] args)
+        {
+            Demo d = new Demo();
+            //instatiating the delegate
+            AddDelegate ad = new AddDelegate(d.AddNum);
+            //call the method through delegate
+            ad(100, 50);
+            SayDelegate sd = new SayDelegate(Demo.SayHello);
+            string str = sd("dev");
+            Console.WriteLine(str);
+            Console.ReadLine();
+        }
+    }
+}
+
+
+
+
+
+pg 8
+Develop Student Information System in C#.NET that demonstrates the 
+windows Controls.
+
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp7
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string name, address, number, gender, course;
+
+            name =textBox1.Text;
+            address =textBox2.Text;
+            number =textBox3.Text;
+            {
+                if (radioButton1.Checked == true)
+                {
+                    gender = radioButton1.Text;
+                }
+                else if (radioButton2.Checked == true)
+                {
+                    gender = radioButton2.Text;
+                }
+                else
+                {
+                    gender = radioButton3.Text;
+                }
+            }
+            {
+                if (checkBox1.Checked == true)
+                {
+                    course = checkBox1.Text;
+                }
+                 
+            
+         
+                else
+                {
+                    course = checkBox2.Text;
+                }
+            }
+
+            MessageBox.Show("name is"+name+"\naddress is"+address+
+                "\nnumer is"+number+"\ngender is"+gender+"\ncourse is"+course);
+        }
+    }
+}
+
+
+
+
+
+
+pg9
+To Design a notepad application to implement menus, custom dialog 
+box and MDI Concepts.
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace lab9
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+       
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           Form2 obj= new Form2();
+            obj.ShowDialog();
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form3 obj = new Form3();
+            obj.ShowDialog();
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form4 obj = new Form4();
+            obj.ShowDialog();
+        }
+    }
+}
+
+
+
+
+pg 10
+Develop a Windows application with database for Student Information 
+System [Insert, Update and Delete Commands].
+
+
+Imports System.Data.SqlClient
+
+Public Class Form1
+    Private cn As sqlConnection
+    Dim cmd As sqlCommand
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        cn = New sqlConnection("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\lenovo\source\repos\lab10\lab10\teju.mdf;Integrated Security=True")
+        cn.Open()
+        MessageBox.Show("connect sucessfully")
+        cn.close()
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        cn.Open()
+        cmd = cn.CreateCommand()
+        cmd.CommandType = CommandType.Text
+        cmd.CommandText = "insert into Student values(" & TextBox1.Text & " , ' " &
+TextBox2.Text & " ' , " & TextBox3.Text & ")"
+        cmd.ExecuteNonQuery()
+        MsgBox("record inserted successfully")
+        cn.Close()
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        cn.Open()
+        cmd = cn.CreateCommand()
+        cmd.CommandType = CommandType.Text
+        cmd.CommandText = "update Student set sname=' " & TextBox2.Text & " ' , smarks=" & TextBox3.Text & " where id=" & TextBox1.Text & ""
+        cmd.ExecuteNonQuery()
+        MsgBox("record updated successfully")
+        cn.Close()
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        cn.Open()
+        cmd = cn.CreateCommand()
+        cmd.CommandType = CommandType.Text
+        cmd.CommandText = "delete from Student where id= " & TextBox1.Text & " "
+        cmd.ExecuteNonQuery()
+        MsgBox("record deleted successfully")
+        cn.Close()
+    End Sub
+End Class
